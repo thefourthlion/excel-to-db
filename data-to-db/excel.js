@@ -22,13 +22,13 @@ data.forEach((row, index) => {
   console.log(`  Main Phone: ${row["Main Phone"]}`);
   console.log("-------------------------");
 
-  axios
-    .post(apiUrl, {
-      Name: row.Customer,
-      Balance: row.Balance,
-      Phone: row["Main Phone"],
-    })
-    .then((response) => {
-      console.log("Data sent successfully:", response.data);
-    });
+  // axios
+  //   .post(apiUrl, {
+  //     Name: row.Customer,
+  //     Balance: row.Balance,
+  //     Phone: row["Main Phone"],
+  //   })
+  //   .then((response) => {
+  //     console.log("Data sent successfully:", response.data);
+  //   });
 });

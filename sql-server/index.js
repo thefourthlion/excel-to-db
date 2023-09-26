@@ -6,8 +6,8 @@ let PORT = 3306;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  con.query("select * from students", (err, result) => {
+app.get("/api/customers/read", (req, res) => {
+  con.query("select * from customers", (err, result) => {
     if (err) {
       throw err;
     } else {
@@ -16,9 +16,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/", (req, res) => {
+app.post("/api/customers/create", (req, res) => {
   const data = req.body;
-  con.query("INSERT INTO students SET ?", data, (err, result) => {
+  con.query("INSERT INTO customers SET ?", data, (err, result) => {
     if (err) {
       throw err;
     } else {
@@ -28,9 +28,9 @@ app.post("/", (req, res) => {
 });
 
 app.put("/:id", (req, res) => {
-  const data = [req.body.name, req.body.email, req.body.phone, req.params.id];
+  const data = [req.body.name, req.body.balance, req.body.phone, req.params.id];
   con.query(
-    "UPDATE students SET name = ?,email=?,phone=? where id = ?",
+    "UPDATE customers SET name = ?,balance=?,phone=? where id = ?",
     data,
     (err, result) => {
       if (err) {
@@ -44,7 +44,7 @@ app.put("/:id", (req, res) => {
 
 app.delete("/:id", (req, res) => {
   let student_id = req.params.id;
-  con.query("DELETE from students where id = " + student_id, (err, result) => {
+  con.query("DELETE from customers where id = " + student_id, (err, result) => {
     if (err) {
       throw err;
     } else {
